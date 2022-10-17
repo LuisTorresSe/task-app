@@ -2,12 +2,15 @@ import { IBoard } from "../../types";
 import { ListBoard } from "./ListBoard";
 import { useState } from "react";
 import { CreateNewBoard } from "./CreateNewBoard";
-
+import { HeaderSideBar } from "./HeaderSideBar";
+import styles from "./SideBar.module.css";
 interface Props {
   boards: IBoard[];
   handleListBoard: (board: IBoard) => void;
   handleCountBoard: (newCount: number) => void;
+  handleSelectBoard: (select: number) => void;
   countBoards: number;
+  selectBoard: number;
 }
 
 interface SideBarState {
@@ -16,9 +19,11 @@ interface SideBarState {
 
 export function SideBar({
   boards,
+  countBoards,
+  selectBoard,
   handleListBoard,
   handleCountBoard,
-  countBoards,
+  handleSelectBoard,
 }: Props) {
   const [stateForm, setStateForm] =
     useState<SideBarState["statusFormBoard"]>(false);
@@ -28,14 +33,21 @@ export function SideBar({
   };
 
   return (
-    <div>
-      <ListBoard boards={boards} />
+    <div className={styles.SideBar}>
+      <HeaderSideBar />
+      <ListBoard
+        boards={boards}
+        handleSelectBoard={handleSelectBoard}
+        countBoards={countBoards}
+        selectBoard={selectBoard}
+      />
       <CreateNewBoard
         handleStateForm={handleStateForm}
         stateForm={stateForm}
         handleListBoard={handleListBoard}
         handleCountBoard={handleCountBoard}
         countBoards={countBoards}
+        handleSelectBoard={handleSelectBoard}
       />
     </div>
   );

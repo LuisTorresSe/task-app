@@ -1,22 +1,23 @@
-.btnBoard {
+.BtnCreateBoard {
+  color: #504789;
+  background-color: white;
+  border: none;
   display: flex;
   align-items: center;
-  background-color: white;
   border: none;
   margin-top: 0.5em;
   width: 85%;
   border-radius: 0px 1em 1em 0px;
-  color: rgb(173, 173, 173);
   cursor: pointer;
   padding: 0px;
 }
 
-.btnBoard:hover {
-  background-color: #504789;
+.BtnCreateBoard:hover {
   color: white;
+  background-color: #504789;
 }
 
-.BoardName {
+.textBtnCrearBoard {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -25,7 +26,9 @@
   padding: 0.5em 0px 0.5em 1em;
 }
 
-.selectBtnBoard {
-  background-color: #504789;
-  color: white;
+.backgroundForm {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  background-color: aqua;
 }

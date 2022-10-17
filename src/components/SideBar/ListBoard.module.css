@@ -1,0 +1,4 @@
+.elementsListBoard {
+  display: flex;
+  flex-direction: column;
+}
