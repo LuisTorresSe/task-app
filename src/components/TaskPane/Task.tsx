@@ -4,5 +4,10 @@ interface Props {
 }
 
 export function Task({ task }: Props) {
-  return <div>{task.title}</div>;
+  return (
+    <div>
+      <p>{task.title}</p>
+      <p>{task.description}</p>
+    </div>
+  );
 }

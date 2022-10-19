@@ -1,14 +1,8 @@
-import { IBoard } from "../types";
+import { IBoard, Tasks } from "../types";
 import { useState, useEffect } from "react";
 import { SideBar } from "./SideBar/SideBar";
 import styles from "./TaskApp.module.css";
-import { TaskPane } from "./TaskPane/TaskPane";
-interface TaskAppState {
-  boards: IBoard[];
-  countBoard: number;
-  select: number;
-  board: IBoard | undefined;
-}
+import { PlatformLaunch } from "../components/TaskPane/PlatformLaunch";
 
 const INITIAl_STATE: IBoard[] = [
   {
@@ -43,10 +37,17 @@ const INITIAl_STATE: IBoard[] = [
     tasks: [],
   },
 ];
+interface TaskAppState {
+  boards: IBoard[];
+  countBoard: number;
+  select: number;
+  board: IBoard;
+  tasks: Tasks[];
+}
 
 export function TaskApp() {
   const [boards, setBoards] = useState<TaskAppState["boards"]>(INITIAl_STATE);
-  const [board, setBoard] = useState<TaskAppState["board"]>();
+  const [board, setBoard] = useState<TaskAppState["board"]>(INITIAl_STATE[0]);
   const [countBoards, setCountBoards] = useState<TaskAppState["countBoard"]>(3);
   const [selectBoard, setSelectBoard] = useState<TaskAppState["select"]>(1);
 
@@ -58,8 +59,22 @@ export function TaskApp() {
   };
   const handleSelectBoard = (select: number) => {
     setSelectBoard(select);
-    const boardSelected = boards.find((board) => board.id === select);
+    const boardSelected = boards.find((board) => board.id === select) as IBoard;
     setBoard(boardSelected);
+  };
+
+  const handleNewTask = (newTask: Tasks) => {
+    const listTask = board.tasks;
+    const updateBoardTask = boards.map((board) => {
+      if (board.id === selectBoard) {
+        return {
+          ...board,
+          tasks: [...listTask, newTask],
+        };
+      }
+      return board;
+    });
+    setBoards(updateBoardTask);
   };
 
   useEffect(() => {
@@ -76,7 +91,7 @@ export function TaskApp() {
         boards={boards}
         selectBoard={selectBoard}
       />
-      <TaskPane board={board} />
+      <PlatformLaunch board={board} handleNewTask={handleNewTask} />
     </div>
   );
 }

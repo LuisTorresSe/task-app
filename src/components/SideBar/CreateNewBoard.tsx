@@ -4,19 +4,19 @@ import styles from "./CreateNewBoard.module.css";
 interface Props {
   handleStateForm: (state: boolean) => void;
   handleListBoard: (board: IBoard) => void;
-  stateForm: Boolean;
   handleCountBoard: (newCount: number) => void;
   handleSelectBoard: (select: number) => void;
   countBoards: number;
+  stateForm: Boolean;
 }
 
 export function CreateNewBoard({
   handleStateForm,
   handleListBoard,
-  stateForm,
   handleCountBoard,
   handleSelectBoard,
   countBoards,
+  stateForm,
 }: Props) {
   return (
     <div>
