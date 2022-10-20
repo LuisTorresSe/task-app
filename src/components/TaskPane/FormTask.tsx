@@ -1,17 +1,17 @@
-import { Tasks } from "../../types";
+import { IBoard, Tasks } from "../../types";
 import { useState } from "react";
 import styles from "./FormTask.module.css";
 interface Props {
   handleStateForm: (state: boolean) => void;
   handleNewTask: (newTask: Tasks) => void;
-  idBoard: number | undefined;
+  board: IBoard;
 }
 
 interface FormTaskState {
   inputValues: Tasks;
 }
 
-export function FormTask({ handleStateForm, handleNewTask, idBoard }: Props) {
+export function FormTask({ handleStateForm, handleNewTask, board }: Props) {
   const [inputValues, setInputValues] = useState<FormTaskState["inputValues"]>({
     title: "",
     description: "",
@@ -19,11 +19,13 @@ export function FormTask({ handleStateForm, handleNewTask, idBoard }: Props) {
     status: "todo",
   });
 
+  const { id, tasks } = board;
+
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValues({
       ...inputValues,
       [e.target.name]: e.target.value,
-      id: `${e.target.value}${idBoard}`,
+      id: `${id}task${tasks.length + 1}`,
     });
   };
 

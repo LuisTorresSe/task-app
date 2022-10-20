@@ -6,13 +6,22 @@ import styles from "../TaskPane/PlatformLaunch.module.css";
 interface Props {
   board: IBoard;
   handleNewTask: (newTask: Tasks) => void;
+  handleUpdateStatusTask: (
+    newstatus: string,
+    idTask: string,
+    idBoard: number
+  ) => void;
 }
 interface PlatformLaunchState {
   stateForm: boolean;
   tasks: Tasks[];
 }
 
-export function PlatformLaunch({ board, handleNewTask }: Props) {
+export function PlatformLaunch({
+  board,
+  handleNewTask,
+  handleUpdateStatusTask,
+}: Props) {
   const [stateForm, setStateForm] =
     useState<PlatformLaunchState["stateForm"]>(false);
 
@@ -25,10 +34,10 @@ export function PlatformLaunch({ board, handleNewTask }: Props) {
       <HeaderTaskPane
         stateForm={stateForm}
         handleStateForm={handleStateForm}
-        idBoard={board?.id}
         handleNewTask={handleNewTask}
+        board={board}
       />
-      <TaskPane board={board} />
+      <TaskPane board={board} handleUpdateStatusTask={handleUpdateStatusTask} />
     </div>
   );
 }

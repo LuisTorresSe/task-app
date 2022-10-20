@@ -13,13 +13,13 @@ const INITIAl_STATE: IBoard[] = [
       {
         title: "Lavar la ropa",
         description: "No tengo ropa para ir de viaje",
-        id: `Tareasdelhogar1`,
+        id: `1task1`,
         status: "todo",
       },
       {
         title: "Ordenar cuarto",
         description: "paz mental",
-        id: `Tareasdelhogar2`,
+        id: `1task2`,
         status: "doing",
       },
     ],
@@ -57,6 +57,7 @@ export function TaskApp() {
   const handleCountBoard = (newCount: number) => {
     setCountBoards(newCount);
   };
+
   const handleSelectBoard = (select: number) => {
     setSelectBoard(select);
     const boardSelected = boards.find((board) => board.id === select) as IBoard;
@@ -77,6 +78,28 @@ export function TaskApp() {
     setBoards(updateBoards);
   };
 
+  const handleUpdateStatusTask = (
+    newStatus: string,
+    idTask: string,
+    idBoard: number
+  ) => {
+    const updateStatusTasks = board.tasks.map((task) => {
+      if (task.id === idTask) {
+        return { ...task, status: `${newStatus}` };
+      }
+      return task;
+    });
+
+    const updateBoards = boards.map((board) => {
+      if (board.id === idBoard) {
+        return { ...board, tasks: updateStatusTasks };
+      }
+      return board;
+    });
+
+    setBoards(updateBoards);
+  };
+
   useEffect(() => {
     handleSelectBoard(selectBoard);
   });
@@ -91,7 +114,11 @@ export function TaskApp() {
         boards={boards}
         selectBoard={selectBoard}
       />
-      <PlatformLaunch board={board} handleNewTask={handleNewTask} />
+      <PlatformLaunch
+        board={board}
+        handleNewTask={handleNewTask}
+        handleUpdateStatusTask={handleUpdateStatusTask}
+      />
     </div>
   );
 }

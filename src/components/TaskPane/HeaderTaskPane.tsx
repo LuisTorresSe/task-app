@@ -1,16 +1,17 @@
 import { CreateNewTask } from "./CreateNewTask";
-import { Tasks } from "../../types";
+import { IBoard, Tasks } from "../../types";
 import styles from "../TaskPane/HeaderTaskPane.module.css";
 interface Props {
   handleStateForm: (status: boolean) => void;
   handleNewTask: (newTask: Tasks) => void;
+
   stateForm: boolean;
-  idBoard: number;
+  board: IBoard;
 }
 
 export function HeaderTaskPane({
   stateForm,
-  idBoard,
+  board,
   handleStateForm,
   handleNewTask,
 }: Props) {
@@ -20,8 +21,8 @@ export function HeaderTaskPane({
       <p>PlatformLaunch</p>{" "}
       <CreateNewTask
         stateForm={stateForm}
+        board={board}
         handleStateForm={handleStateForm}
-        idBoard={idBoard}
         handleNewTask={handleNewTask}
       />
     </div>

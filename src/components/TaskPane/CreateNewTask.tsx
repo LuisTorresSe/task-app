@@ -1,16 +1,16 @@
 import { FormTask } from "./FormTask";
-import { Tasks } from "../../types";
+import { IBoard, Tasks } from "../../types";
 import styles from "./CreateNewTask.module.css";
 interface Props {
   stateForm: boolean;
-  idBoard: number;
+  board: IBoard;
   handleStateForm: (status: boolean) => void;
   handleNewTask: (newTask: Tasks) => void;
 }
 
 export function CreateNewTask({
   stateForm,
-  idBoard,
+  board,
   handleStateForm,
   handleNewTask,
 }: Props) {
@@ -26,9 +26,9 @@ export function CreateNewTask({
         <div className={stateForm ? "background" : ""}>
           {stateForm ? (
             <FormTask
+              board={board}
               handleStateForm={handleStateForm}
               handleNewTask={handleNewTask}
-              idBoard={idBoard}
             />
           ) : null}
         </div>
