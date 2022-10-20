@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { IBoard, Tasks } from "../../types";
+import { Tasks, IBoard } from "../../types";
 import { HeaderTaskPane } from "./HeaderTaskPane";
 import { TaskPane } from "./TaskPane";
-
+import styles from "../TaskPane/PlatformLaunch.module.css";
 interface Props {
   board: IBoard;
   handleNewTask: (newTask: Tasks) => void;
@@ -21,7 +21,7 @@ export function PlatformLaunch({ board, handleNewTask }: Props) {
   };
 
   return (
-    <div>
+    <div className={styles.PlatformLaunch}>
       <HeaderTaskPane
         stateForm={stateForm}
         handleStateForm={handleStateForm}

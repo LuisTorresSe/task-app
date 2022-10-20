@@ -1,0 +1,12 @@
+.headerTaskPane {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  outline-offset: 1px solid gray;
+}
+.headerTaskPane p {
+  margin: 0.5em;
+}

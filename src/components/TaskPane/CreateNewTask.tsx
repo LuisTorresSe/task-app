@@ -1,11 +1,11 @@
 import { FormTask } from "./FormTask";
 import { Tasks } from "../../types";
-
+import styles from "./CreateNewTask.module.css";
 interface Props {
   stateForm: boolean;
+  idBoard: number;
   handleStateForm: (status: boolean) => void;
   handleNewTask: (newTask: Tasks) => void;
-  idBoard: number;
 }
 
 export function CreateNewTask({
@@ -15,8 +15,13 @@ export function CreateNewTask({
   handleNewTask,
 }: Props) {
   return (
-    <div>
-      <button onClick={() => handleStateForm(true)}> +Add New Task</button>
+    <div className={styles.containerCreateTask}>
+      <button
+        onClick={() => handleStateForm(true)}
+        className={styles.btnCreateTask}
+      >
+        +Add New Task
+      </button>
       {
         <div className={stateForm ? "background" : ""}>
           {stateForm ? (

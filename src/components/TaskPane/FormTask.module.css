@@ -1,0 +1,60 @@
+.containerFormTask {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border-radius: 1em;
+}
+.propsForm {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+
+.titleFormBoard {
+  text-align: center;
+  font-size: large;
+}
+
+.inputForm {
+  height: 20px;
+  outline: 1px solid #c6bce8;
+  border: none;
+  border-radius: 0.3em;
+  margin: 1px;
+}
+.inputForm:focus {
+  outline: 2px solid #504789;
+}
+
+.textTareaForm {
+  height: 60px;
+  outline: 1px solid #c6bce8;
+  border: none;
+  border-radius: 0.3em;
+  margin: 1px;
+}
+.textTareaForm:focus {
+  outline: 2px solid #504789;
+}
+.btnFormTask {
+  width: 80%;
+  align-self: center;
+  margin: 1em 0 1em;
+  border: none;
+  border-radius: 1em;
+  padding: 0.5em;
+  cursor: pointer;
+}
+.btnCreate {
+  background-color: #504789;
+  color: white;
+}
+.btnCreate:hover {
+  background-color: #c6bce8;
+  color: white;
+}
+
+.btnCancel:hover {
+  color: #c6bce8;
+}

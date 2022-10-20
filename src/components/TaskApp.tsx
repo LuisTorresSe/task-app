@@ -65,7 +65,7 @@ export function TaskApp() {
 
   const handleNewTask = (newTask: Tasks) => {
     const listTask = board.tasks;
-    const updateBoardTask = boards.map((board) => {
+    const updateBoards = boards.map((board) => {
       if (board.id === selectBoard) {
         return {
           ...board,
@@ -74,7 +74,7 @@ export function TaskApp() {
       }
       return board;
     });
-    setBoards(updateBoardTask);
+    setBoards(updateBoards);
   };
 
   useEffect(() => {

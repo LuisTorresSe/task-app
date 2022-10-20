@@ -1,5 +1,6 @@
 import { CreateNewTask } from "./CreateNewTask";
 import { Tasks } from "../../types";
+import styles from "../TaskPane/HeaderTaskPane.module.css";
 interface Props {
   handleStateForm: (status: boolean) => void;
   handleNewTask: (newTask: Tasks) => void;
@@ -14,7 +15,7 @@ export function HeaderTaskPane({
   handleNewTask,
 }: Props) {
   return (
-    <div>
+    <div className={styles.headerTaskPane}>
       {" "}
       <p>PlatformLaunch</p>{" "}
       <CreateNewTask

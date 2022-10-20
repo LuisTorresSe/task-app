@@ -1,0 +1,13 @@
+.containerTaskPane {
+  width: 100%;
+  height: 85%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #e5eefd;
+}
+.containerDragAndDrop {
+  border-radius: 0.5em;
+  margin: 0.5em;
+  width: calc(350px + 30%);
+  text-align: center;
+}

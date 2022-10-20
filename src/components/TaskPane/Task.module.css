@@ -1,0 +1,20 @@
+.containerTask {
+  width: 95%;
+  border-radius: 1em;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  box-shadow: 2px 2px 2px 1px rgba(214, 214, 214, 0.438);
+}
+.title {
+  font-weight: bold;
+  padding-left: 1em;
+  padding-top: 1em;
+  margin: 0;
+}
+.description {
+  font-size: 0.8rem;
+  padding-left: 1em;
+}

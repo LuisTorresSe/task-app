@@ -1,5 +1,6 @@
 import { Tasks } from "../../types";
 import { useState } from "react";
+import styles from "./FormTask.module.css";
 interface Props {
   handleStateForm: (state: boolean) => void;
   handleNewTask: (newTask: Tasks) => void;
@@ -22,6 +23,7 @@ export function FormTask({ handleStateForm, handleNewTask, idBoard }: Props) {
     setInputValues({
       ...inputValues,
       [e.target.name]: e.target.value,
+      id: `${e.target.value}${idBoard}`,
     });
   };
 
@@ -39,25 +41,22 @@ export function FormTask({ handleStateForm, handleNewTask, idBoard }: Props) {
     });
   };
 
-  const handleIdForm = () => {
-    setInputValues({
-      ...inputValues,
-      id: `${inputValues.title}${idBoard}`,
-    });
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleIdForm();
-    handleStateForm(false);
-    handleNewTask(inputValues);
+    if (inputValues.title !== "") {
+      handleStateForm(false);
+      handleNewTask(inputValues);
+    }
   };
 
-  console.log(inputValues);
   return (
-    <form action="" onSubmit={handleSubmit}>
-      <p>Add new Task</p>
-      <div>
+    <form
+      action=""
+      onSubmit={handleSubmit}
+      className={styles.containerFormTask}
+    >
+      <h1 className={styles.titleFormBoard}>Add new Task</h1>
+      <div className={`${styles.propsForm} ${styles.title_task}`}>
         <label htmlFor="title-task">Title</label>
         <input
           type="text"
@@ -65,19 +64,26 @@ export function FormTask({ handleStateForm, handleNewTask, idBoard }: Props) {
           id="title-task"
           onChange={handleChangeInput}
           value={inputValues.title}
+          className={styles.inputForm}
         />
       </div>
-      <div>
+      <div className={`${styles.propsForm} ${styles.description_task}`}>
         <label htmlFor="description">Description</label>
         <textarea
           name="description"
           id="description"
           onChange={handleChangeTextarea}
+          className={styles.textTareaForm}
         ></textarea>
-      </div>{" "}
-      <div>
+      </div>
+      <div className={`${styles.propsForm} ${styles.status_task}`}>
         <label htmlFor="status"> Status</label>
-        <select name="status" id="status" onChange={handleChangeSelect}>
+        <select
+          name="status"
+          id="status"
+          onChange={handleChangeSelect}
+          className={styles.inputForm}
+        >
           <option value="todo" defaultChecked>
             todo
           </option>
@@ -85,8 +91,18 @@ export function FormTask({ handleStateForm, handleNewTask, idBoard }: Props) {
           <option value="done">done</option>
         </select>
       </div>
-      <button type="submit">Create Task</button>
-      <button onClick={(e) => handleStateForm(false)}>Cancel</button>
+      <button
+        type="submit"
+        className={`${styles.btnFormTask} ${styles.btnCreate}`}
+      >
+        Create Task
+      </button>
+      <button
+        onClick={(e) => handleStateForm(false)}
+        className={`${styles.btnFormTask} ${styles.btnCancel}`}
+      >
+        Cancel
+      </button>
     </form>
   );
 }

@@ -1,0 +1,22 @@
+.btnCreateTask {
+  align-self: center;
+  margin: 1em 0 1em;
+  border: none;
+  border-radius: 1em;
+  padding: 1em;
+  cursor: pointer;
+  background-color: #504789;
+  color: white;
+}
+
+.btnCreateTask:hover {
+  background-color: #8274af;
+  color: white;
+}
+
+.btnFormTaskCancel:hover {
+  color: #c6bce8;
+}
+.containerCreateTask {
+  margin: 0.5em;
+}
