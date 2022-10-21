@@ -51,7 +51,7 @@ export function TaskApp() {
   const [board, setBoard] = useState<TaskAppState["board"]>(INITIAl_STATE[0]);
   const [countBoards, setCountBoards] = useState<TaskAppState["countBoard"]>(3);
   const [selectBoard, setSelectBoard] = useState<TaskAppState["select"]>(1);
-  const [modeDark, setModeDark] = useState<TaskAppState["modeDark"]>(false);
+
   const [visible, setVisible] = useState<TaskAppState["visible"]>(false);
   const handleListBoard = (board: IBoard) => {
     setBoards([...boards, board]);
