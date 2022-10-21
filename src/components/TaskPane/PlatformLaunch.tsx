@@ -2,15 +2,18 @@ import { useState } from "react";
 import { Tasks, IBoard } from "../../types";
 import { HeaderTaskPane } from "./HeaderTaskPane";
 import { TaskPane } from "./TaskPane";
-import styles from "../TaskPane/PlatformLaunch.module.css";
+import styled from "styled-components";
+
 interface Props {
   board: IBoard;
+  visible: boolean;
   handleNewTask: (newTask: Tasks) => void;
   handleUpdateStatusTask: (
     newstatus: string,
     idTask: string,
     idBoard: number
   ) => void;
+  handleVisible: () => void;
 }
 interface PlatformLaunchState {
   stateForm: boolean;
@@ -19,6 +22,8 @@ interface PlatformLaunchState {
 
 export function PlatformLaunch({
   board,
+  visible,
+  handleVisible,
   handleNewTask,
   handleUpdateStatusTask,
 }: Props) {
@@ -30,14 +35,25 @@ export function PlatformLaunch({
   };
 
   return (
-    <div className={styles.PlatformLaunch}>
+    <ContainerPlatformLaunch>
       <HeaderTaskPane
+        visible={visible}
         stateForm={stateForm}
         handleStateForm={handleStateForm}
         handleNewTask={handleNewTask}
         board={board}
+        handleVisible={handleVisible}
       />
       <TaskPane board={board} handleUpdateStatusTask={handleUpdateStatusTask} />
-    </div>
+    </ContainerPlatformLaunch>
   );
 }
+
+const ContainerPlatformLaunch = styled.div`
+  width: 80%;
+  height: 100%;
+
+  @media (max-width: 912px) {
+    width: 100%;
+  }
+`;

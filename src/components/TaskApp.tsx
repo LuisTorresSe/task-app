@@ -1,9 +1,8 @@
 import { IBoard, Tasks } from "../types";
 import { useState, useEffect } from "react";
 import { SideBar } from "./SideBar/SideBar";
-import styles from "./TaskApp.module.css";
 import { PlatformLaunch } from "../components/TaskPane/PlatformLaunch";
-
+import styled from "styled-components";
 const INITIAl_STATE: IBoard[] = [
   {
     name: "Tareas del hogar",
@@ -43,6 +42,8 @@ interface TaskAppState {
   select: number;
   board: IBoard;
   tasks: Tasks[];
+  modeDark: boolean;
+  visible: boolean;
 }
 
 export function TaskApp() {
@@ -50,7 +51,8 @@ export function TaskApp() {
   const [board, setBoard] = useState<TaskAppState["board"]>(INITIAl_STATE[0]);
   const [countBoards, setCountBoards] = useState<TaskAppState["countBoard"]>(3);
   const [selectBoard, setSelectBoard] = useState<TaskAppState["select"]>(1);
-
+  const [modeDark, setModeDark] = useState<TaskAppState["modeDark"]>(false);
+  const [visible, setVisible] = useState<TaskAppState["visible"]>(false);
   const handleListBoard = (board: IBoard) => {
     setBoards([...boards, board]);
   };
@@ -103,9 +105,14 @@ export function TaskApp() {
   useEffect(() => {
     handleSelectBoard(selectBoard);
   });
+  console.log(visible);
+
+  const handleVisible = () => {
+    setVisible(!visible);
+  };
 
   return (
-    <div className={styles.ContainerTaskApp}>
+    <ContainerTaskApp>
       <SideBar
         handleListBoard={handleListBoard}
         handleCountBoard={handleCountBoard}
@@ -113,12 +120,27 @@ export function TaskApp() {
         countBoards={countBoards}
         boards={boards}
         selectBoard={selectBoard}
+        visible={visible}
       />
       <PlatformLaunch
+        visible={visible}
         board={board}
         handleNewTask={handleNewTask}
         handleUpdateStatusTask={handleUpdateStatusTask}
+        handleVisible={handleVisible}
       />
-    </div>
+    </ContainerTaskApp>
   );
 }
+
+const ContainerTaskApp = styled.div`
+  position: relative;
+  display: flex;
+  width: 80%;
+  height: auto;
+  height: 80%;
+  background-color: aquamarine;
+
+  @media (min-width: 912px) {
+  }
+`;

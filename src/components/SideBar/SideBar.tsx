@@ -3,15 +3,15 @@ import { ListBoard } from "./ListBoard";
 import { CreateNewBoard } from "./CreateNewBoard";
 import { HeaderSideBar } from "./HeaderSideBar";
 import { useState } from "react";
-import styles from "./SideBar.module.css";
+import styled from "styled-components";
 interface Props {
   boards: IBoard[];
+  countBoards: number;
+  selectBoard: number;
+  visible: boolean;
   handleListBoard: (board: IBoard) => void;
   handleCountBoard: (newCount: number) => void;
   handleSelectBoard: (select: number) => void;
-
-  countBoards: number;
-  selectBoard: number;
 }
 
 interface SideBarState {
@@ -21,6 +21,7 @@ export function SideBar({
   boards,
   countBoards,
   selectBoard,
+  visible,
   handleListBoard,
   handleCountBoard,
   handleSelectBoard,
@@ -30,7 +31,7 @@ export function SideBar({
     setStateForm(state);
   };
   return (
-    <div className={styles.SideBar}>
+    <ContainerSideBar className={visible === true ? "visible" : ""}>
       <HeaderSideBar />
       <ListBoard
         boards={boards}
@@ -46,6 +47,31 @@ export function SideBar({
         countBoards={countBoards}
         handleSelectBoard={handleSelectBoard}
       />
-    </div>
+    </ContainerSideBar>
   );
 }
+
+const ContainerSideBar = styled.div`
+  width: 30%;
+  height: 100%;
+  background-color: white;
+
+  @media (max-width: 912px) {
+    & {
+      display: none;
+      position: absolute;
+      top: 15%;
+      height: 85%;
+      width: 80%;
+    }
+
+    &.visible {
+      display: block;
+
+      top: 15%;
+      height: 85%;
+      width: 80%;
+      transition: 0s initial;
+    }
+  }
+`;
